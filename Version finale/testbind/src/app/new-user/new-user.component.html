@@ -1,0 +1,75 @@
+<div class="bg-image" style="background-image: url('https://scontent-cdt1-1.xx.fbcdn.net/v/t1.15752-9/254950880_285105383512757_2857588623491633462_n.png?_nc_cat=103&ccb=1-5&_nc_sid=ae9488&_nc_ohc=lw1XFVRz1LgAX-djJZE&_nc_ht=scontent-cdt1-1.xx&oh=cc7d81b561fe35d1ac9de0e53d98d5b7&oe=61B294EA');">
+  <H1>Inscription</H1>
+  <form  class="row g-3 needs-validation" [formGroup]="userForm" (ngSubmit)="onSubmitForm()" >
+    <div class="row row-color2 py-4">
+      <div class="col-12 col-lg-4 mb-lg-0 mb-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <fieldset>
+              <legend>Vos coordonnée</legend>
+              <label for="nom">Votre nom :</label>
+              <input type="text" name="nom" id="nom" size="30" maxlength="10" formControlName="nom" required/>
+              <br />
+              <label for="prenom">Votre prénom :</label>
+              <input type="text" name="prenom" id="prenom" size="30" maxlength="10" formControlName="prenom" required/>
+              <br />
+              <label for="email">Votre adresse mail:</label>
+              <input type="email" name="email" id="email" size="30" maxlength="10" formControlName="email" required/>
+              <br />
+              <label for="tel">Votre numero de telephone :</label>
+              <input type="tel" name="tel" id="tel" size="30" maxlength="10" formControlName="telephone" required/>
+              <br />
+              <label for="adresse">Votre adresse:</label>
+              <input type="text" name="adresse" id="adresse" size="30" maxlength="10" formControlName="adresse" required="required" />
+              <br />
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 mb-lg-0 mb-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <fieldset>
+              <legend>Plus d'information sur vous</legend>
+              Veuillez indiquer ce que vous cherchez sur cette plateforme<br />
+              <input type="radio" name="metier" value="Demande" id="Demande" /> <label for="Demande">Voulez vous soliciter l'aide de personnes ?</label><br />
+              <input type="radio" name="metier" value="Offre" id="Offre" /> <label for="Offre">Voulez vous aider les personnes ?</label><br />
+              <label for="profession">Votre metier?:</label>
+              <input type="text" name="profession" id="profession" size="30" maxlength="10" formControlName="profession" required="required"/>
+              <br />
+              <label for="description" class="form-label">Pouvez vous vous presenter brievement?</label>
+              <textarea type="text" class="form-control" id="description" ></textarea>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 mb-lg-0 mb-4">
+        <div class="card shadow">
+          <div class="card-body">
+
+
+            <fieldset>
+              <legend>information de connexion</legend>
+              Veuillez indiquer si vous etes disponible<br />
+              <input type="radio" name="disponible" value="true" id="true"  formControlName="disponible" /> <label for="Demande">disponible</label><br />
+              <input type="radio" name="disponible" value="false" id="false" formControlName="disponible"/> <label for="Offre">indisponible</label><br/>
+              <label for="pass">Votre mot de passe :</label>
+              <input type="password" name="pass" id="pass" formControlName="password" required="required"/>
+
+              <br />
+              <label for="pass1">Confirmer votre mot de passe</label>
+              <input type="password" name="pass" id="pass1" required="required"/>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit" onClick="document.location='/'">S'inscrire</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="log_current_user == 'true'">
+  <a href="VoirInscrit" class="btn btn-danger" aria-current="page">Voir les utilisateurs</a>
+</div>
+
