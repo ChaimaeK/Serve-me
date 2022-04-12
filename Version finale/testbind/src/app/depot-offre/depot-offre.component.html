@@ -1,0 +1,46 @@
+<div class="container">
+  <br><br>
+  <br>
+  <div class="alert alert-danger" *ngIf="isConnected != 'true'">
+    <strong>Vous devez vous inscrire</strong>
+  </div>
+  <form >
+    <form style="width:300px">
+      <legend>Quel est votre proposition</legend>
+      <label for="professionelle">A quel secteur cette demande s'applique t-elle ?</label>
+      <br/>
+      <select name="professionelle" id="professionelle">
+        <optgroup label="primaire">
+          <option value="agriculture">agriculture</option>
+          <option value="élevage">élevage</option>
+        </optgroup>
+        <optgroup label="secondaire">
+          <option value="BTP">BTP</option>
+          <option value="hight-tech">hight-tech</option>
+        </optgroup>
+        <optgroup label="terciaire">
+          <option value="professeur">proffesseur</option>
+          <option value="finance">finance</option>
+        </optgroup>
+      </select>
+      <div >
+        <label for="description" class="form-label">Pouvez vous presenter brievement votre proposition?</label>
+        <textarea type="text" class="form-control" id="description" required></textarea>
+        <div class="invalid-feedback">
+          décrivez votre requette
+        </div>
+      </div>
+      <div >
+        <label for="prixo" class="form-label">Indiquez le prix de ce service </label>
+        <div >
+          <input  min="0"  class="form-control" id="prixo" required>
+        </div>
+        <div class="invalid-feedback">
+          indiquez un prix
+        </div>
+      </div>
+      <br>
+      <a class="btn btn-success"  style="cursor: pointer;" (click)="ajouterOffre()" routerLink="/Offres">Save</a>
+    </form>
+  </form>
+</div>
