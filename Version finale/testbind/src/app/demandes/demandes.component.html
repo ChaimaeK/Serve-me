@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading"> <br>
+
+      <!--<button class="btn btn-primary" (click)="onGetOffres()">Liste des services</button>-->
+      <h4>Liste des demandes</h4><br>
+      <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
+        <div class="form-group">
+
+          <input type="text" name="keyword" ngModel placeholder="recherche par domaine">
+
+          &nbsp;<button type="submit" class="btn btn-primary" style="height:30px; margin-top:-4px; padding-top:1px;">Chercher</button>
+        </div>
+      </form><br><br>
+      <div class="panel-body">
+
+        <table *ngIf="demandeService.demandes" class="table table-bordered " >
+          <thead>
+          <tr>
+            <th scope="col">IdPub</th><th scope="col">Name</th><th scope="col">Texte</th><th scope="col">Date </th><th scope="col">Online</th><th scope="col">Type</th><th scope="col" >DemandeurId</th> <th scope="col" colspan="2">Options</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let d of demandeService.demandes">
+            <td >{{d.idPub}}</td>
+            <td >{{d.name}}</td>
+            <td >{{d.text}}</td>
+            <td>{{d.created }}</td>
+            <td >{{d.online}}</td>
+            <td >{{d.type}}</td>
+            <td >{{d.demandeurId}}</td>
+            <td *ngIf="isAdmin=='true'"><a  class="btn btn-danger" (click)="onDeleteDemandee(d.idPub)" style="cursor: pointer;">Supprimez</a></td>
+
+            <td *ngIf="(isAdmin!='true' && d.online==false)||d.demandeurId==isUser" ><button disabled="disabled" class="btn btn-primary"  >Proposez un service</button></td>
+            <td *ngIf="isAdmin!='true' && d.online==true &&d.demandeurId!=isUser " ><button  class="btn btn-primary"  (click)="onReservee(d.idPub,d.name,d.text,d.created,d.type,d.demandeurId)" (click)="ajouterReservation(d.idPub,d.demandeurId)">Proposez un service</button></td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
