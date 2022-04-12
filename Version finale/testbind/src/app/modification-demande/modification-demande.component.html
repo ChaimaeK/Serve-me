@@ -1,0 +1,39 @@
+<div class="container" xmlns:cols="http://www.w3.org/1999/xhtml" xmlns:rows="http://www.w3.org/1999/xhtml">
+  <br><br> <h2>Editer ma demande</h2>
+  <br>
+  <form >
+    <form style="width:300px" >
+      <legend>Que cherchez vous?</legend>
+      <label for="domaine">A quel secteur cette demande s'applique t-elle ?</label>
+      <br/>
+      <select name="domaine"  id="domaine">
+        <optgroup label="primaire">
+          <option value="agriculture">agriculture</option>
+          <option value="élevage">élevage</option>
+        </optgroup>
+        <optgroup label="secondaire">
+          <option value="BTP">BTP</option>
+          <option value="hight-tech">hight-tech</option>
+        </optgroup>
+        <optgroup label="terciaire">
+          <option value="professeur">proffesseur</option>
+          <option value="finance">finance</option>
+        </optgroup>
+      </select>
+      <div >
+        <label for="description" class="form-label">Pouvez vous presenter brievement votre besoin?</label>
+        <textarea type="text" class="form-control" name="description"  id="description" ></textarea>
+        <div class="invalid-feedback">
+          décrivez votre requette
+        </div>
+      </div>
+      <div class="form-group">
+        <label >Online:</label>
+        <textarea style="resize: none" cols:2 rows:2 class="form-control" name="online" id="online" ></textarea>
+      </div>
+
+      <br>
+      <a class="btn btn-success" style="cursor: pointer;" (click)="onUpdateDemande()">Save</a>
+    </form>
+  </form>
+</div>
