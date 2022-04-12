@@ -1,0 +1,37 @@
+<div class="container">
+  <br><br>
+  <br>
+  <div class="alert alert-danger" *ngIf="isConnected != 'true'">
+    <strong>Vous devez vous inscrire</strong>
+  </div>
+  <form >
+    <form style="width:300px">
+      <legend>Que cherchez vous?</legend>
+      <label for="domaine">A quel secteur cette demande s'applique t-elle ?</label>
+      <br/>
+      <select name="domaine" id="domaine">
+        <optgroup label="primaire">
+          <option value="agriculture">agriculture</option>
+          <option value="élevage">élevage</option>
+        </optgroup>
+        <optgroup label="secondaire">
+          <option value="BTP">BTP</option>
+          <option value="hight-tech">hight-tech</option>
+        </optgroup>
+        <optgroup label="terciaire">
+          <option value="professeur">proffesseur</option>
+          <option value="finance">finance</option>
+        </optgroup>
+      </select>
+      <div >
+        <label for="description" class="form-label">Pouvez vous presenter brievement votre besoin?</label>
+        <textarea type="text" class="form-control" id="description" required></textarea>
+        <div class="invalid-feedback">
+          décrivez votre requette
+        </div>
+      </div>
+      <br>
+      <a class="btn btn-success"  style="cursor: pointer;" (click)="ajouterDemande()" routerLink="/Demandes">Save</a>
+    </form>
+  </form>
+</div>
