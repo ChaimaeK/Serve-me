@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="alert alert-danger" *ngIf="erreur==1">
+      <strong>login ou mot de passe erronés</strong>
+    </div>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="name">
+          nom
+        </label>
+        <input type="text" id="name" class="form-control" name="name" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="password">
+          password
+        </label>
+        <input type="password" id="password" class="form-control" name="password" ngModel>
+      </div>
+      <button class="btn btn-primary" type="submit"  >Enregistrer</button>
+    </form>
+  </div>
+</div>
