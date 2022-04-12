@@ -1,0 +1,26 @@
+
+<H1> Espace administrateur</H1>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let user of users">
+    <h3> Utilisateur {{ user.id_user}}</h3>
+    <p>Nom d'utilisateur: {{ user.full_name }} <br/> Mot de pass: {{ user.password }}</p>
+    <h5> Contact </h5>
+    <p> email : {{ user.email }}; Telephone : 0{{ user.telephone}}; Adresse : {{user.adresse}}</p>
+    <h5> information </h5>
+    <p>Cette persone est {{ user.profession }}</p>
+    <p *ngIf="user.disponible == true">
+      Cette personne est prete à travailler
+    </p>
+    <p *ngIf="user.disponible == false">
+      Cette personne n'est pas prete à travailler
+    </p>
+    <div class="btn-group">
+      <a class="btn btn-danger" (click)="deleteUser(user.id_user)">Supprimer</a>
+      <a class="btn btn-primary" (click)="promotionUser(user.id_user)">Promouvoir</a>
+    </div>
+  </li>
+</ul>
+
+<app-admin-list>
+
+</app-admin-list>
