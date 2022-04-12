@@ -1,0 +1,12 @@
+<H2> Administrateur </H2>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let admin of admins">
+    <h3> Administrateur {{ admin.id_user}}</h3>
+    <p>Nom d'administrateur: {{ admin.full_name }} <br/> Mot de pass: {{ admin.password }}</p>
+    <h5> Contact </h5>
+    <p> email : {{ admin.email }}; Telephone : 0{{ admin.telephone}}</p>
+
+    <a class="btn btn-danger" (click)="deleteAdmin(admin.id_user)">Delete</a>
+  </li>
+</ul>
+
