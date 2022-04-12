@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading"> <br>
+
+      <!--<button class="btn btn-primary" (click)="onGetOffres()">Listes des services</button>-->
+      <h4>Listes des Services</h4><br>
+      <form #f="ngForm" (ngSubmit)="onChercher(f.value)">
+        <div class="form-group">
+
+          <input type="text" name="keyword" ngModel placeholder="recherche par domaine">
+
+          &nbsp;<button type="submit" class="btn btn-primary" style="height:30px; margin-top:-4px; padding-top:1px;">Chercher</button>
+        </div>
+      </form><br><br>
+      <div class="panel-body">
+
+        <table *ngIf="offreService.offres" class="table table-bordered " >
+          <thead>
+          <tr>
+            <th scope="col">IdPub</th><th scope="col">Name</th><th scope="col">Texte</th><th scope="col">Date </th><th scope="col">Online</th><th scope="col">Type</th><th scope="col">Prix</th><th scope="col" >ActeurId</th> <th scope="col" colspan="2">Options</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let o of offreService.offres">
+            <td >{{o.idPub}}</td>
+            <td >{{o.name}}</td>
+            <td >{{o.text}}</td>
+            <td>{{o.created }}</td>
+            <td >{{o.online}}</td>
+            <td >{{o.type}}</td>
+            <td >{{o.prix}}</td>
+            <td >{{o.acteurId}}</td>
+            <td *ngIf="isAdmin=='true'"  ><a  class="btn btn-danger" (click)="onDeleteOffree(o.idPub)" style="cursor: pointer;">Delete</a></td>
+            <td *ngIf="(isAdmin!='true' && o.online==false)||o.acteurId==isUsers"><button  disabled="disabled" class="btn btn-primary"  >Reservez</button></td>
+            <td *ngIf="isAdmin!='true' && o.online==true&&o.acteurId!=isUsers"><button   class="btn btn-primary" (click)="onReservee(o.idPub,o.name,o.text,o.created,o.type,o.prix,o.acteurId)" (click)="ajouterReservation(o.idPub,o.prix,o.acteurId)" >Reservez</button></td>
+
+            <!--<td ><a  class="btn btn-success" routerLink="/modif" *ngIf="isConnected=='true'">Update</a></td>
+            (click)="onReservee(o.idPub,o.name,o.text,o.type,o.prix,o.acteurId)"-->
+            <!--*ngIf="authService.isUser()"-->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
