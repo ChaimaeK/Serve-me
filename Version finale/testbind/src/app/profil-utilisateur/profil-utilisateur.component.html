@@ -1,0 +1,122 @@
+<div class="row row-color2 py-4">
+  <div class="col-12 col-lg-4 mb-lg-0 mb-4">
+
+      <div class="card-body" *ngIf="isConnect=='true'">
+      <tr>
+      <th><a class="btn btn-primary" style="width: 160px" (click)="onGetDemandesByUserapp(idUserS)" >Mes Demandes</a></th>
+        &nbsp;<th><a class="btn btn-primary" style="width: 120px" (click)="onGetOffresByUserapp(idUserS)" >Mes Services</a></th>
+        &nbsp;<th><a class="btn btn-primary" style="width: 180px" (click)="onGetReservationsRecu(idUserS)" >Mon Panier Acteur</a></th>
+        &nbsp; <th><a class="btn btn-primary" style="width: 220px" (click)="onGetMesReservations(idUserS)" >Mon Panier Demandeur</a></th>
+      </tr>
+        <br><br><br>
+        <table *ngIf="demandes" class="table table-bordered " >
+          <thead>
+          <tr>
+            <th scope="col">IdPub</th><th scope="col">Name</th><th scope="col">Texte</th><th scope="col">Date </th><th scope="col">Online</th><th scope="col">Type</th><th scope="col" >DemandeurId</th> <th scope="col" colspan="2">Options</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let d of demandes">
+            <td >{{d.idPub}}</td>
+            <td >{{d.name}}</td>
+            <td >{{d.text}}</td>
+            <td>{{d.created }}</td>
+            <td >{{d.online}}</td>
+            <td >{{d.type}}</td>
+            <td >{{d.demandeurId}}</td>
+            <td ><a  class="btn btn-danger" (click)="onDeleteDemandee(d.idPub)" style="cursor: pointer;">Delete</a></td>
+
+            <td><a  class="btn btn-primary" [routerLink]="['/modifD',d.idPub]" (click)="conserveD(d.idPub,d.name,d.text,d.online)" >Update</a></td>
+            <!--<td ><a  class="btn btn-danger" (click)="onDeleteDemandee(d.idPub)" style="cursor: pointer;">Delete</a></td>
+
+            <td><a  class="btn btn-primary" [routerLink]="['/modif',d.idPub]" (click)="conserve(d.idPub,d.name,d.text,d.online)" >Update</a></td>
+
+
+             <td ><a   class="btn btn-primary" (click)="onUpdateDemandee(d.idPub,d.name,d.text,d.online)" >Update</a></td> -->
+            <!--*ngIf="authService.isUser()"-->
+          </tr>
+          </tbody>
+        </table>
+        <table *ngIf="offres" class="table table-bordered " >
+          <thead>
+          <tr>
+            <th scope="col">IdPub</th><th scope="col">Name</th><th scope="col">Texte</th><th scope="col">Date </th><th scope="col">Online</th><th scope="col">Type</th><th scope="col">Prix</th><th scope="col" >ActeurId</th> <th scope="col" colspan="2">Options</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let o of offres">
+        <td >{{o.idPub}}</td>
+        <td >{{o.name}}</td>
+        <td >{{o.text}}</td>
+        <td >{{o.created }}</td>
+        <td >{{o.online}}</td>
+        <td >{{o.type}}</td>
+        <td >{{o.prix}}</td>
+        <td >{{o.acteurId}}</td>
+            <td ><a  class="btn btn-danger" (click)="onDeleteOffree(o.idPub)" style="cursor: pointer;">Delete</a></td>
+            <td><a  class="btn btn-primary" [routerLink]="['/modif',o.idPub]" (click)="conserve(o.idPub,o.name,o.text,o.online,o.prix)" >Update</a></td>
+        </tr>
+          </tbody>
+        </table>
+        <table *ngIf="reservations" class="table table-bordered " >
+          <thead>
+          <tr>
+            <th scope="col">IdReservation</th><th scope="col">IdPub</th><th scope="col">DemandeurId</th><th scope="col">DateReservation</th><th scope="col">Tarif</th><th scope="col">Etat</th><th scope="col">Confirmée</th><th scope="col" colspan="2">Options</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let r of reservations">
+            <td >{{r.idFacture}}</td>
+            <td >{{r.idPub}}</td>
+            <td >{{r.demandeurId }}</td>
+            <td >{{r.dateReservation}}</td>
+            <td >{{r.tarif}}</td>
+            <td >{{r.etat}}</td>
+            <td >{{r.confirmee}}</td>
+
+            <td *ngIf="r.confirmee==false" ><a  class="btn btn-danger" (click)="onConfirmerReservation(r.idFacture, r.idPub, r.acteurId, r.demandeurId, r.dateReservation, r.tarif, r.etat )" style="cursor: pointer;">Confirmer</a></td>
+            <td *ngIf="r.tarif==0" ><a  class="btn btn-danger" (click)="onAnnulerReservation(r.idPub)" (click)="onDeleteReservation(r.idFacture)" style="cursor: pointer;">Annuler</a></td>
+            <td ><a class="btn btn-danger" >Contacter</a></td>
+
+            <!-- <td ><a   class="btn btn-primary" (click)="onUpdateDemandee(d.idPub,d.name,d.text,d.online)" >Update</a></td> -->
+            <!--*ngIf="authService.isUser()"-->
+          </tr>
+          </tbody>
+        </table>
+        <table *ngIf="mesReservations" class="table table-bordered " >
+          <thead>
+          <tr>
+            <th scope="col">IdReservation</th><th scope="col">IdPub</th><th scope="col">ActeurId</th><th scope="col">DateReservation</th><th scope="col">Tarif</th><th scope="col">Etat</th><th scope="col">Confirmée</th><th scope="col" colspan="2">Options</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let r of mesReservations">
+            <td >{{r.idFacture}}</td>
+            <td >{{r.idPub}}</td>
+            <td >{{r.acteurId}}</td>
+            <td >{{r.dateReservation}}</td>
+            <td >{{r.tarif}}</td>
+            <td >{{r.etat}}</td>
+            <td >{{r.confirmee}}</td>
+
+            <td *ngIf="r.tarif==0" ><a  class="btn btn-danger" (click)="onDeleteReservation(r.idFacture)" (click)="onDeleteDemandee(r.idPub)">Annuler</a></td>
+            <td *ngIf="r.tarif!=0"><a  class="btn btn-danger" (click)="onDeleteReservation(r.idFacture)" (click)="onAnnulerOf(r.idPub)" >Annuler</a></td>
+            <td *ngIf="r.confirmee==true"><a class="btn btn-danger" (click)="onContacter(r.acteurId)" >Contactez</a></td>
+            <td *ngIf="r.confirmee==false"><button disabled="disabled" class="btn btn-danger" (click)="onContacter(r.acteurId)" >Contactez</button></td>
+
+
+
+            <!-- <td ><a   class="btn btn-primary" (click)="onUpdateDemandee(d.idPub,d.name,d.text,d.online)" >Update</a></td> -->
+            <!--*ngIf="authService.isUser()"-->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
+
+  </div>
+</div>
