@@ -45,6 +45,6 @@ Espace administrateur :
 
 - Consulter l’historique des offres et des demandes
 
-## language utilisé
+## Technologies utilisés
 
-HTML, Java script, Bootstrap
+Java Spring Boot, Angular, Bootstrap
